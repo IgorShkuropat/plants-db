@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Главная страница</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+</head>
+<body>
+<header class="py-3 mb-4 border-bottom">
+    <div class="container d-flex flex-wrap justify-content-center">
+      <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
+
+        <span class="fs-4">Справочник предприятий г.Сургута</span>
+      </a>
+      <form class="col-12 col-lg-auto mb-3 mb-lg-0" action="{% url 'search'%}">
+        <input class="form-control" name="q" type="text" placeholder="Поиск">
+      </form>
+    </div>
+  </header>
+ {% if index %}
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Юр. Лицо</th>
+      <th scope="col">Адрес</th>
+      <th scope="col">ОГРН</th>
+        <th scope="col">Тип предприятия</th>
+        <th scope="col">Описание</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+         {% for i in index %}
+      <td> {{ i.ur_lico }}</td>
+      <td> {{ i.address }}</td>
+      <td>{{ i.ogrn }}</td>
+        <td>{{ i.type }}</td>
+        <td>{{ i.description }}</td>
+        </tr>
+        {% endfor %}
+
+
+  </tbody>
+</table>
+ {% endif %}
+
+
+</body>
+</html>
